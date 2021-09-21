@@ -1,0 +1,11 @@
+{
+  "private": "true",
+  "name": "@monorepo-vote/util",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "*"
+  }
+}

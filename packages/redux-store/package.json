@@ -1,0 +1,18 @@
+{
+  "private": "true",
+  "name": "@monorepo-vote/redux-store",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@monorepo-vote/axios-config": "*",
+    "@reduxjs/toolkit": "^1.6.1",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.1",
+    "reselect": "^4.0.0"
+  }
+}
