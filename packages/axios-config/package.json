@@ -1,0 +1,14 @@
+{
+  "private": "true",
+  "name": "@monorepo-vote/axios-config",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "devDependencies": {},
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
