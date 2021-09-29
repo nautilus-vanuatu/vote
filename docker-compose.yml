@@ -1,0 +1,34 @@
+version: "3.1"
+services:
+  # Postgres Database
+  database:
+    image: postgres:13.4-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+  # Rabbit MQ
+  rabbitmq:
+    image: rabbitmq:3.9-alpine
+    ports:
+      - 15672:15672
+      - 5672:5672
+  # OpenLDAP
+  openldap:
+    image: osixia/openldap:1.5.0
+    environment:
+      LDAP_ORGANISATION: "Camara Qualquer"
+      LDAP_DOMAIN: "gen.gov.br"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      LDAP_READONLY_USER: "true"
+      LDAP_READONLY_USER_USERNAME: "authproxy"
+      LDAP_READONLY_USER_PASSWORD: "authproxy"
+    volumes:
+      - .docker/ldap-seeds.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/ldap-seeds.ldif
+    ports:
+      - "389:389"
+      - "636:636"
+    hostname: "gen.gov.br"
+    command: ["--copy-service"]
