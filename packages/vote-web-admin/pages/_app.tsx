@@ -4,14 +4,16 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import type { AppProps } from 'next/app';
 import { ToastContainer } from 'react-toastify';
-import store from '@monorepo-condo/redux-store/index';
+import store from '@monorepo-vote/redux-store/index';
 import 'react-toastify/dist/ReactToastify.css';
+
+import theme from '../styles/theme';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const persistor = persistStore(store);
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Component {...pageProps} />

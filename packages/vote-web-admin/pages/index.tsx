@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { Flex } from '@chakra-ui/react';
 
-import { authSelector } from '@monorepo-condo/redux-store/src/slices/auth.slice';
+import { authSelector } from '@monorepo-vote/redux-store/src/slices/auth.slice';
 import withAuth from '../utils/withAuth';
 import Navigation from '../components/layout/Navigation';
 

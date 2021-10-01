@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   authSelector,
   logout,
-} from '@monorepo-condo/redux-store/src/slices/auth.slice';
+} from '@monorepo-vote/redux-store/src/slices/auth.slice';
 import {
   Avatar,
   Box,
