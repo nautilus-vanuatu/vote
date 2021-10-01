@@ -2,7 +2,7 @@ import { ComponentType, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
 
-import { authSelector } from '@monorepo-condo/redux-store/src/slices/auth.slice';
+import { authSelector } from '@monorepo-vote/redux-store/src/slices/auth.slice';
 
 export default function withAuth<P>(
   WrappedComponent: ComponentType<P>

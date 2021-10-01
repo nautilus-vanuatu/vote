@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   authSelector,
   logout,
-} from '@monorepo-condo/redux-store/src/slices/auth.slice';
+} from '@monorepo-vote/redux-store/src/slices/auth.slice';
 import {
   Avatar,
   Box,
@@ -19,17 +19,22 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  Heading,
+  Text,
   useColorMode,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { useTextColor } from '@monorepo-vote/util';
+import Logo from '@monorepo-vote/components/src/layout/Logo';
 import NavLink from '../NavLink';
+import theme from '../../../styles/theme';
 
 const Links = [
-  { name: 'Condomínios', url: '/condominio' },
-  // { name: 'Projects', url: '#' },
-  // { name: 'Team', url: '#' },
+  { name: 'Permissões', url: '#' },
+  { name: 'Votações', url: '#' },
+  { name: 'Cadastros', url: '#' },
 ];
 
 const Navigation: React.FC = () => {
@@ -44,6 +49,8 @@ const Navigation: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  const textColor = useTextColor();
+
   function handleLogout(): void {
     dispatch(logout());
     router.replace('/');
@@ -53,9 +60,10 @@ const Navigation: React.FC = () => {
     <>
       <Box
         borderRadius="sm"
-        bg={useColorModeValue('gray.100', 'gray.900')}
-        px={4}
-        mb={4}
+        bg={useColorModeValue('gray.100', theme.colors.app.blue[800])}
+        p={4}
+        // mb={4}
+        textColor={textColor}
       >
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <IconButton
@@ -67,7 +75,23 @@ const Navigation: React.FC = () => {
           />
           <HStack spacing={8} alignItems="center">
             <NextLink href="/">
-              <Box _hover={{ cursor: 'pointer' }}>Logo</Box>
+              <Flex
+                flexDirection="column"
+                _hover={{ cursor: 'pointer' }}
+                justifyContent="center"
+              >
+                <Flex>
+                  <Flex p={1} alignItems="center">
+                    <Logo width={40} />
+                  </Flex>
+                  <Flex p={1} alignItems="center">
+                    <Heading>vot-E</Heading>
+                  </Flex>
+                </Flex>
+                <Box align="center">
+                  <Text fontSize="xs">Módulo administrativo</Text>
+                </Box>
+              </Flex>
             </NextLink>
             <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map(link => (

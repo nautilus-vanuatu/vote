@@ -2,18 +2,19 @@ import { CombinedState, createSlice } from '@reduxjs/toolkit';
 import Cookie from 'js-cookie';
 import { toast } from 'react-toastify';
 
-import api from '@monorepo-condo/axios-config';
+import api from '@monorepo-vote/axios-config';
 
 import { RootState, AppDispatch } from '../../index';
 
 type AuthType = {
-  email: string;
+  username: string;
   password: string;
 };
 
 type UserType = {
   id: string;
   email: string;
+  username: string;
   name: string;
 };
 
@@ -30,9 +31,7 @@ const initialState: StateType = {
   hasErrors: false,
   user: {} as UserType,
   flagOperation: false,
-  token: Cookie.get('geCondAdmin-token')
-    ? Cookie.get('geCondAdmin-token')
-    : undefined,
+  token: Cookie.get('votE-token') ? Cookie.get('votE-token') : undefined,
 };
 
 const authSlice = createSlice({
@@ -93,8 +92,9 @@ export const authUser =
         data: {
           user: {
             id: '1',
-            name: 'Alexandre Odoni',
+            username: 'alexandre.odoni',
             email: 'aleodoni@gmail.com',
+            name: 'Alexandre',
           },
           token: 'GHGHJD&665RRT8hjsdsd(*(ggsaf#@',
         },
@@ -102,7 +102,7 @@ export const authUser =
 
       api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-      Cookie.set('geCondAdmin-token', response.data.token);
+      Cookie.set('votE-token', response.data.token);
 
       dispatch(getAuthSuccess(response.data));
 
@@ -122,7 +122,7 @@ export const logout =
     try {
       api.defaults.headers.Authorization = `Bearer`;
 
-      Cookie.remove('geCondAdmin-token');
+      Cookie.remove('votE-token');
 
       dispatch(getLogoutSuccess());
 

@@ -3,76 +3,87 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  // Input,
-  Checkbox,
+  Input,
   Stack,
-  Link,
   Button,
   Heading,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { IsString, IsNotEmpty } from 'class-validator';
+import { useTextColor } from '@monorepo-vote/util';
+import Logo from './layout/Logo';
 
-import Input from './layout/Input';
+class User {
+  @IsString()
+  @IsNotEmpty({ message: 'Usuário obrigatório' })
+  username: string | undefined;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Senha obrigatória' })
+  password: string | undefined;
+}
 
 type Props = {
   title: string;
-  subtitle: string;
   onLogin(data: LoginFormFields): Promise<void>;
 };
 
 export type LoginFormFields = {
-  email: string;
+  username: string;
   password: string;
 };
 
-export default function Login({
-  title,
-  subtitle,
-  onLogin,
-}: Props): JSX.Element {
-  const loginSchema = yup.object().shape({
-    email: yup.string().email('e-mail inválido').required('e-mail obrigatório'),
-    password: yup.string().required('senha obrigatória'),
-  });
-
+export default function Login({ title, onLogin }: Props): JSX.Element {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm({ resolver: yupResolver(loginSchema), mode: 'onChange' });
+  } = useForm<LoginFormFields>({
+    resolver: classValidatorResolver(User),
+    mode: 'onChange',
+  });
 
   function onSubmit(data: LoginFormFields): void {
     onLogin(data);
   }
 
+  const textColor = useTextColor();
+
   return (
-    <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
+    <Stack
+      spacing={4}
+      width="100%"
+      maxW="xl"
+      py={12}
+      px={6}
+      align="center"
+      color={textColor}
+    >
+      <Stack align="center">
+        <Logo width={120} />
+      </Stack>
       <Stack align="center">
         <Heading fontSize="4xl">{title}</Heading>
-        <Text fontSize="lg" color="gray.600">
-          {subtitle}
-        </Text>
       </Stack>
       <Box
         rounded="lg"
-        bg={useColorModeValue('white', 'gray.700')}
         boxShadow="lg"
-        p={8}
+        p={4}
+        w={{ base: '100%', xl: '60%' }}
+        align="center"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={4}>
-            <FormControl id="email" isInvalid={!!errors?.email?.message}>
-              <FormLabel>Email</FormLabel>
+            <FormControl id="username" isInvalid={!!errors?.username?.message}>
+              <FormLabel>Usuário</FormLabel>
               <Input
-                type="email"
-                {...register('email')}
-                isInvalid={errors.email}
+                type="text"
+                {...register('username')}
+                isInvalid={!!errors?.username?.message}
               />
-              <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+              <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
             </FormControl>
 
             <FormControl id="password" isInvalid={!!errors?.password?.message}>
@@ -80,7 +91,7 @@ export default function Login({
               <Input
                 type="password"
                 {...register('password')}
-                isInvalid={errors.password}
+                isInvalid={!!errors?.password?.message}
               />
               <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
             </FormControl>
@@ -89,19 +100,17 @@ export default function Login({
                 direction={{ base: 'column', sm: 'row' }}
                 align="start"
                 justify="space-between"
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color="blue.400">Esqueci minha senha</Link>
-              </Stack>
+              />
               <Button
                 type="submit"
-                bg="teal.500"
-                color="white"
+                bg="app.red"
+                color="app.ice"
+                opacity="0.8"
                 _hover={{
-                  bg: 'teal.400',
+                  opacity: 1,
                 }}
                 isLoading={isSubmitting}
-                disabled={!!errors.email || !!errors.password}
+                disabled={!!errors.username || !!errors.password}
               >
                 Entrar
               </Button>

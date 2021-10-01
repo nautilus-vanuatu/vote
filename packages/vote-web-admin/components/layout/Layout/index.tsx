@@ -1,25 +1,24 @@
 import type { NextPage } from 'next';
-import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
+import { useGradient } from '@monorepo-vote/util';
 import Navigation from '../Navigation';
 
-type Props = {
-  title: string;
-};
+const Layout: NextPage = ({ children }) => {
+  const gradient = useGradient();
 
-const Layout: NextPage<Props> = ({ title, children }) => {
   return (
-    <Flex p={4} w="full" minH="100vh" flexDirection="column">
+    <Flex w="100%" h="100vh" flexDirection="column">
       <Navigation />
-      {/* <Box
-        borderRadius="sm"
-        bg={useColorModeValue('gray.100', 'gray.900')}
-        p={2}
-        mb={4}
+      <Flex
+        w="100%"
+        h="100%"
+        flexDirection="column"
+        p={4}
+        bgGradient={gradient}
       >
-        <Heading size="md">{title}</Heading>
-      </Box> */}
-      {children}
+        {children}
+      </Flex>
     </Flex>
   );
 };

@@ -1,15 +1,17 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import {
   authUser,
   authSelector,
-} from '@monorepo-condo/redux-store/src/slices/auth.slice';
+} from '@monorepo-vote/redux-store/src/slices/auth.slice';
 
 import {
   Login as LoginCompo,
   LoginFormFields,
-} from '@monorepo-condo/components';
+} from '@monorepo-vote/components';
+
+import { useGradient } from '@monorepo-vote/util';
 
 export default function Login(): JSX.Element {
   const router = useRouter();
@@ -24,18 +26,11 @@ export default function Login(): JSX.Element {
     if (!hasErrors) router.push('/');
   }
 
+  const gradient = useGradient();
+
   return (
-    <Flex
-      minH="100vh"
-      align="center"
-      justify="center"
-      bg={useColorModeValue('gray.50', 'gray.800')}
-    >
-      <LoginCompo
-        title="GeCon - Administrativo"
-        subtitle="Módulo Administrativo do Gerenciador de Condomínios"
-        onLogin={handleClick}
-      />
+    <Flex minH="100vh" align="center" justify="center" bgGradient={gradient}>
+      <LoginCompo title="vot-E" onLogin={handleClick} />
     </Flex>
   );
 }
