@@ -4,4 +4,6 @@ export {
   useAxiosPatch,
   useAxiosPost,
   useAxiosPut,
+  useGradient,
+  useTextColor,
 } from './hooks';

@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-  key: 'geCon-Admin',
+  key: 'votE',
   storage,
 };
 

@@ -21,8 +21,7 @@ export default function Login(): JSX.Element {
   const dispatch = useDispatch();
 
   async function handleClick(data: LoginFormFields): Promise<void> {
-    // dispatch(authUser(data));
-    console.log(data);
+    dispatch(authUser(data));
 
     if (!hasErrors) router.push('/');
   }

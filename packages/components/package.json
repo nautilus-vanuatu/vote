@@ -7,7 +7,6 @@
   "devDependencies": {
   },
   "peerDependencies": {
-    "react": "*",
-    "typescript": "*"
+
   }
 }

@@ -4,16 +4,15 @@ import { Flex } from '@chakra-ui/react';
 
 import { authSelector } from '@monorepo-vote/redux-store/src/slices/auth.slice';
 import withAuth from '../utils/withAuth';
-import Navigation from '../components/layout/Navigation';
+import Layout from '../components/layout/Layout';
 
 const Home: NextPage = () => {
   const { user } = useSelector(authSelector);
 
   return (
-    <Flex p={4} w="full" flexDirection="column">
-      <Navigation />
-      {user && <span>{user.name}</span>}
-    </Flex>
+    <Layout>
+      <Flex h="100%">{user && <span>{user.name}</span>}</Flex>
+    </Layout>
   );
 };
 

@@ -10,19 +10,24 @@ const config: ThemeConfig = {
 const AppColors = {
   red: '#E51C44',
   ice: '#DDE3F0',
+  blue: {
+    800: '#081D2D',
+    600: '#142938',
+    500: '#355267',
+  },
 };
 
 const Input = {
   variants: {
     outline: (props: Dict) => ({
       field: {
-        bg: mode('gray.100', '#142938')(props),
-        borderColor: '#355267',
+        bg: mode('gray.100', AppColors.blue[600])(props),
+        borderColor: AppColors.blue[500],
       },
     }),
   },
   defaultProps: {
-    focusBorderColor: '#355267',
+    focusBorderColor: AppColors.blue[500],
   },
 };
 

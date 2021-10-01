@@ -5,9 +5,7 @@
   "main": "src/index.ts",
   "license": "MIT",
   "devDependencies": {},
-  "peerDependencies": {
-    "typescript": "*"
-  },
+  
   "dependencies": {
     "@monorepo-vote/axios-config": "*",
     "@reduxjs/toolkit": "^1.6.1",

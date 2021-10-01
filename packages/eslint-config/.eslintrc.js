@@ -42,6 +42,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
       ],
       rules: {
+        'react/jsx-no-bind': 'off',
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
         '@typescript-eslint/no-explicit-any': 'off',
         'func-names': 'off',
