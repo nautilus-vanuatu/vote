@@ -1,11 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  authSelector,
-  logout,
-} from '@monorepo-vote/redux-store/src/slices/auth.slice';
+import { useDispatch } from 'react-redux';
+import { logout } from '@monorepo-vote/redux-store/src/slices/auth.slice';
 import {
   Avatar,
   Box,
@@ -18,7 +15,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-  Stack,
+  Collapse,
   Heading,
   Text,
   useColorMode,
@@ -28,14 +25,9 @@ import {
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useTextColor } from '@monorepo-vote/util';
 import Logo from '@monorepo-vote/components/src/layout/Logo';
-import NavLink from '../NavLink';
+import DesktopNav from './DesktopNav';
+import MobileNav from './MobileNav';
 import theme from '../../../styles/theme';
-
-const Links = [
-  { name: 'Permissões', url: '#' },
-  { name: 'Votações', url: '#' },
-  { name: 'Cadastros', url: '#' },
-];
 
 const Navigation: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,9 +35,6 @@ const Navigation: React.FC = () => {
   const router = useRouter();
 
   const { colorMode, toggleColorMode } = useColorMode();
-
-  const { user, loading, hasErrors, flagOperation, token } =
-    useSelector(authSelector);
 
   const dispatch = useDispatch();
 
@@ -93,13 +82,9 @@ const Navigation: React.FC = () => {
                 </Box>
               </Flex>
             </NextLink>
-            <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
-              {Links.map(link => (
-                <NavLink key={link.name} url={link.url}>
-                  {link.name}
-                </NavLink>
-              ))}
-            </HStack>
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+              <DesktopNav />
+            </Flex>
           </HStack>
           <Flex alignItems="center">
             <Menu>
@@ -137,17 +122,9 @@ const Navigation: React.FC = () => {
           </Flex>
         </Flex>
 
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as="nav" spacing={4}>
-              {Links.map(link => (
-                <NavLink key={link.name} url={link.url}>
-                  {link.name}
-                </NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
+        <Collapse in={isOpen} animateOpacity>
+          <MobileNav />
+        </Collapse>
       </Box>
     </>
   );
