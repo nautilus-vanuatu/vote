@@ -15,7 +15,7 @@ import NAV_ITEMS from '../items';
 const DesktopNav: React.FC = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const popoverContentBgColor = useColorModeValue('gray.100', 'app.blue.800');
 
   return (
     <Stack direction="row" spacing={4}>
