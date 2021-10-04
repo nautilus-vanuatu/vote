@@ -51,7 +51,7 @@ const MobileNavItem = ({ label, children, href }: NavItem): JSX.Element => {
           pl={4}
           borderLeft={1}
           borderStyle="solid"
-          borderColor={useColorModeValue('gray.200', 'gray.700')}
+          borderColor={useColorModeValue('gray.200', 'app.blue.600')}
           align="start"
         >
           {children &&

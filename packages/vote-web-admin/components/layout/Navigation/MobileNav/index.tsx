@@ -6,7 +6,7 @@ import NAV_ITEMS from '../items';
 const MobileNav = (): JSX.Element => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue('white', 'app.blue.800')}
       p={4}
       display={{ md: 'none' }}
     >

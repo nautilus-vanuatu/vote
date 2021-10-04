@@ -20,7 +20,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem): JSX.Element => {
       display="block"
       p={2}
       rounded="md"
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+      _hover={{ bg: useColorModeValue('pink.50', 'app.blue.600') }}
     >
       <Stack direction="row" align="center">
         <Box>
