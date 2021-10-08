@@ -15,6 +15,9 @@ async function bootstrap(): Promise<void> {
       urls: [configService.get<string>('RABBIT_MQ_SERVERS')],
       queue: configService.get<string>('RABBIT_MQ_TOPIC'),
       noAck: false,
+      queueOptions: {
+        durable: false,
+      },
     },
   });
 
