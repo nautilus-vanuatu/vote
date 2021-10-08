@@ -1,24 +1,24 @@
-dn: ou=grupos,dc=gen,dc=gov,dc=br
+dn: ou=groups,dc=school,dc=org
 objectClass: top
 objectClass: organizationalUnit
-ou: grupos
-description: Lista de grupos
+ou: groups
+description: Group list
 
-dn: ou=usuarios,dc=gen,dc=gov,dc=br
+dn: ou=users,dc=school,dc=org
 objectClass: top
 objectClass: organizationalUnit
-ou: usuarios
-description: Lista de usuarios
+ou: users
+description: Users list
 
-dn: cn=dev,ou=grupos,dc=gen,dc=gov,dc=br
+dn: cn=it,ou=groups,dc=school,dc=org
 objectClass: top
 objectClass: posixGroup
 gidNumber: 10196
-description: Departamento de Desenvolvimento
+description: Information Technology
 memberUid: nautilus.vanuatu
-cn: dev
+cn: it
 
-dn: uid=nautilus.vanuatu,ou=usuarios,dc=gen,dc=gov,dc=br
+dn: uid=nautilus.vanuatu,ou=users,dc=school,dc=org
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -27,9 +27,9 @@ objectClass: posixAccount
 objectClass: shadowAccount
 uid: nautilus.vanuatu
 employeeNumber: 12345678900
-employeeType: efetivo
-departmentNumber: Departamento de Desenvolvimento
-uidNumber: 1111
+employeeType: employee
+departmentNumber: IT
+uidNumber: 2080
 gidNumber: 513
 displayName: Nautilus Vanuatu
 sn: Vanuatu
@@ -39,4 +39,4 @@ mail: nautilus.vanuatu@gmail.com
 userPassword: 123456
 shadowLastChange: 18225
 shadowMax: 365
-homeDirectory: /home/nautilis.vanuatu
+homeDirectory: /home/nautilus.vanuatu
