@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClientProxyVote } from './client-proxy';
+import { ClientProxyGateway } from './client-proxy';
 
 @Module({
-  providers: [ClientProxyVote],
-  exports: [ClientProxyVote],
+  providers: [ClientProxyGateway],
+  exports: [ClientProxyGateway],
 })
 export class ProxyRMQModule {}
