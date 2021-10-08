@@ -42,6 +42,10 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
       ],
       rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/interface-name-prefix': 'off',
         'react/jsx-no-bind': 'off',
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
         '@typescript-eslint/no-explicit-any': 'off',
